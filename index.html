@@ -1035,6 +1035,159 @@ footer{position:relative;z-index:1;text-align:center;padding:4rem 2rem;backgroun
 .footer-name{font-family:'Dancing Script',cursive;font-size:3rem;color:var(--pink-deep);}
 
 #confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:9999;}
+
+/* BUNTING BANNER */
+.bunting-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  overflow: hidden;
+  z-index: 10;
+  pointer-events: none;
+}
+.bunting-string {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  border-bottom: 2px dashed rgba(224, 112, 144, 0.4);
+  z-index: 9;
+}
+.bunting-flag {
+  position: relative;
+  width: 45px;
+  height: 65px;
+  background: var(--flag-bg, var(--pink-btn));
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 12px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform-origin: top center;
+  animation: flagSway var(--sway-duration, 3s) ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay, 0s);
+  z-index: 10;
+}
+@keyframes flagSway {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+
+@media (max-width: 600px) {
+  .bunting-flag {
+    width: 24px;
+    height: 40px;
+    font-size: 0.95rem;
+    padding-bottom: 6px;
+  }
+  .bunting-container {
+    gap: 3px;
+  }
+  .hero-tag {
+    margin-top: 3.5rem !important;
+  }
+}
+
+/* FLOATING BALLOONS */
+.balloons-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  width: 75px;
+  height: 90px;
+  background: var(--balloon-bg, radial-gradient(circle at 30% 30%, #ff7675, #d63031));
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  box-shadow: inset -5px -5px 15px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
+  animation: floatUpBalloon var(--float-duration, 15s) linear infinite;
+  animation-delay: var(--float-delay, 0s);
+  opacity: 0.85;
+}
+.balloon::before {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 33px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid var(--knot-color, #d63031);
+}
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -45px;
+  left: 37px;
+  width: 1px;
+  height: 40px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+}
+@keyframes floatUpBalloon {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    left: var(--start-x, 10%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(var(--rot, 15deg));
+    left: var(--end-x, 15%);
+    opacity: 0;
+  }
+}
+
+/* SWEET 19 BADGE */
+.sweet-19-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 108, 179, 0.15) 0%, rgba(200, 115, 248, 0.15) 100%);
+  border: 1.5px solid rgba(232, 100, 138, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.6rem 2.2rem;
+  border-radius: 999px;
+  margin-top: 1.2rem;
+  box-shadow: 0 8px 32px rgba(232, 100, 138, 0.12), inset 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: pulseSweet19 2s infinite ease-in-out, fadeSlideDown 1s 0.7s ease both;
+}
+.sweet-19-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff6cb3, #c873f8, #e07090);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 8px rgba(232, 100, 138, 0.2));
+}
+@keyframes pulseSweet19 {
+  0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(232, 100, 138, 0.12); }
+  50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(232, 100, 138, 0.22); }
+}
 </style>
 </head>
 <body>
@@ -1217,7 +1370,7 @@ footer{position:relative;z-index:1;text-align:center;padding:4rem 2rem;backgroun
 
   <p class="hb-text" id="hb-text">Happy Birthday</p>
   <p class="hb-name" id="hb-name">Dhriti 🎀</p>
-  <p class="hb-sub" id="hb-sub">~ our favourite kiddoo ~</p>
+  <p class="hb-sub" id="hb-sub">~ our favourite kiddoo turns Sweet 19! (hehehe) ~</p>
 
   <button class="enter-btn" id="enter-btn" onclick="showMainSite()">
     open your surprise ✨
@@ -1237,10 +1390,45 @@ footer{position:relative;z-index:1;text-align:center;padding:4rem 2rem;backgroun
   <!-- GIFTS LANDING SCREEN -->
   <div id="gifts-page" class="page-view active-view">
     <div class="hero">
-      <p class="hero-tag">✨ you made it in ✨</p>
+      <!-- Hanging Bunting Banner -->
+      <div class="bunting-container">
+        <div class="bunting-string"></div>
+        <div class="bunting-flag" style="--flag-bg: #ff6cb3; --sway-duration: 2.8s; --sway-delay: 0s;">H</div>
+        <div class="bunting-flag" style="--flag-bg: #ffa502; --sway-duration: 3.2s; --sway-delay: 0.1s;">A</div>
+        <div class="bunting-flag" style="--flag-bg: #54a0ff; --sway-duration: 3.0s; --sway-delay: 0.2s;">P</div>
+        <div class="bunting-flag" style="--flag-bg: #5f27cd; --sway-duration: 3.4s; --sway-delay: 0.3s;">P</div>
+        <div class="bunting-flag" style="--flag-bg: #1dd1a1; --sway-duration: 2.9s; --sway-delay: 0.4s;">Y</div>
+        <div style="width: 12px; pointer-events: none;"></div>
+        <div class="bunting-flag" style="--flag-bg: #ff6b6b; --sway-duration: 3.1s; --sway-delay: 0.5s;">B</div>
+        <div class="bunting-flag" style="--flag-bg: #48dbfb; --sway-duration: 3.3s; --sway-delay: 0.6s;">I</div>
+        <div class="bunting-flag" style="--flag-bg: #ff9ff3; --sway-duration: 2.7s; --sway-delay: 0.7s;">R</div>
+        <div class="bunting-flag" style="--flag-bg: #feca57; --sway-duration: 3.5s; --sway-delay: 0.8s;">T</div>
+        <div class="bunting-flag" style="--flag-bg: #ff6cb3; --sway-duration: 3.2s; --sway-delay: 0.9s;">H</div>
+        <div class="bunting-flag" style="--flag-bg: #54a0ff; --sway-duration: 2.8s; --sway-delay: 1.0s;">D</div>
+        <div class="bunting-flag" style="--flag-bg: #1dd1a1; --sway-duration: 3.0s; --sway-delay: 1.1s;">A</div>
+        <div class="bunting-flag" style="--flag-bg: #5f27cd; --sway-duration: 3.4s; --sway-delay: 1.2s;">Y</div>
+      </div>
+
+      <!-- Floating Balloons Background -->
+      <div class="balloons-container">
+        <div class="balloon" style="--balloon-bg: radial-gradient(circle at 30% 30%, #ff8da1, #e8648a); --knot-color: #e8648a; --start-x: 5%; --end-x: 12%; --rot: -8deg; --float-duration: 16s; --float-delay: 0s;"></div>
+        <div class="balloon" style="--balloon-bg: radial-gradient(circle at 30% 30%, #e9b5f5, #b873f8); --knot-color: #b873f8; --start-x: 88%; --end-x: 82%; --rot: 10deg; --float-duration: 14s; --float-delay: 2.5s;"></div>
+        <div class="balloon" style="--balloon-bg: radial-gradient(circle at 30% 30%, #ffea79, #fca502); --knot-color: #fca502; --start-x: 18%; --end-x: 25%; --rot: 6deg; --float-duration: 19s; --float-delay: 6s;"></div>
+        <div class="balloon" style="--balloon-bg: radial-gradient(circle at 30% 30%, #8ac6ff, #3897ff); --knot-color: #3897ff; --start-x: 78%; --end-x: 70%; --rot: -12deg; --float-duration: 15s; --float-delay: 9s;"></div>
+        <div class="balloon" style="--balloon-bg: radial-gradient(circle at 30% 30%, #ffd0b5, #ff7e40); --knot-color: #ff7e40; --start-x: 10%; --end-x: 3%; --rot: -5deg; --float-duration: 17s; --float-delay: 12s;"></div>
+        <div class="balloon" style="--balloon-bg: radial-gradient(circle at 30% 30%, #ebd4fc, #b886f8); --knot-color: #b886f8; --start-x: 82%; --end-x: 89%; --rot: 7deg; --float-duration: 21s; --float-delay: 4.5s;"></div>
+      </div>
+
+      <p class="hero-tag" style="margin-top: 5rem;">✨ you made it in ✨</p>
       <h1 class="hero-name">Happy Birthday,<br><span>Dhriti</span></h1>
+      
+      <!-- Sweet 19 Badge -->
+      <div class="sweet-19-badge">
+        <span class="sweet-19-text">Sweet 19! ✨</span>
+      </div>
+
       <p class="hero-dg">~ dg forever ~</p>
-      <p class="hero-sub">Our favourite kiddoo turns a year more fabulous</p>
+      <p class="hero-sub">Our favourite kiddoo turns a year more fabulous (hehehe) 🌸</p>
       <span class="cake">🎂</span>
     </div>
 
@@ -1254,7 +1442,7 @@ footer{position:relative;z-index:1;text-align:center;padding:4rem 2rem;backgroun
         </div>
         <div class="gift-box" onclick="openGift(this, 'photos-page')">
           <span class="gift-bow">🎀</span>
-          <div class="gift-tag">Open Me: Our Photos 📸</div>
+          <div class="gift-tag">Open Me: Her Photos 📸</div>
         </div>
         <div class="gift-box" onclick="openGift(this, 'playlist-page')">
           <span class="gift-bow">🎀</span>
@@ -1271,11 +1459,23 @@ footer{position:relative;z-index:1;text-align:center;padding:4rem 2rem;backgroun
       </div>
     </div>
 
+    <!-- FRONT PAGE WISHES SECTION -->
+    <div id="front-wishes-section" style="display: none; padding: 2rem 0; background: transparent;">
+      <h2 class="gifts-title" style="font-size: 2.2rem; margin-bottom: 0.2rem;">Dhriti's Pinned Wishes 🌟</h2>
+      <p class="gifts-subtitle" style="font-size: 1.2rem; margin-bottom: 2.5rem;">Wishes written on the Wish Wall, pinned here too!</p>
+      <div class="wish-board" id="front-wish-board" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
+        <!-- Pinned wishes will load here -->
+      </div>
+    </div>
+    
+    <!-- TOGGLE FRONT WISHES BUTTON -->
+    <button id="toggle-front-wishes-btn" class="back-btn" onclick="toggleFrontWishes()" style="display: none; margin: 1.5rem auto 2rem; font-size: 1.1rem; padding: 0.6rem 1.4rem;">Hide Wishes Section 🙈</button>
+
     <footer>
       <p style="font-size:3rem;margin-bottom:1rem">🎉🎂🎈</p>
       <p class="footer-name">Happy Birthday, Dhriti!</p>
       <p style="font-family:'Dancing Script',cursive;font-size:1.5rem;color:var(--lilac);margin-top:.5rem">aka kiddoo, aka dg, aka our favourite girl 💕</p>
-      <p style="font-size:.9rem;color:var(--muted);margin-top:.8rem">Made with love, just for you</p>
+      <p style="font-size:.9rem;color:var(--muted);margin-top:.8rem">Made by budhuuuie 🥺💖✨</p>
     </footer>
   </div>
 
@@ -1603,7 +1803,7 @@ function hideMusicFallbackButton(){
   }
 }
 
-const BIRTHDAY_TARGET = new Date('2026-05-30T00:00:00'); // temporary test date; change back to birthday later
+const BIRTHDAY_TARGET = new Date('2026-06-03T00:00:00'); // temporary test date; change back to birthday later
 let birthdayCountdownInterval = null;
 
 function initBirthdayCountdown(){
@@ -1817,6 +2017,7 @@ function blowCandle(num){
       setTimeout(()=>document.getElementById('hb-sub').classList.add('show'), 1100);
       setTimeout(()=>document.getElementById('enter-btn').classList.add('show'), 1800);
       launchConfetti();
+      startGlitterShower();
       
       // Start background music
       startBackgroundMusic();
@@ -1932,14 +2133,15 @@ window.addEventListener('DOMContentLoaded', () => {
 // HEARTS
 function initHearts(){
   const hb=document.getElementById('hearts-bg');
-  const em=['🌸','💕','✨','🌷','🎀','💖','🌺'];
-  for(let i=0;i<20;i++){
+  const em=['🌸','💕','✨','🌷','🎀','💖','🌺','⭐','💫','🌟','✨','💖'];
+  for(let i=0;i<45;i++){
     const h=document.createElement('div'); h.className='heart';
     h.textContent=em[Math.floor(Math.random()*em.length)];
     h.style.left=Math.random()*100+'vw';
-    h.style.animationDuration=(9+Math.random()*13)+'s';
-    h.style.animationDelay=(Math.random()*10)+'s';
-    h.style.fontSize=(12+Math.random()*14)+'px';
+    h.style.animationDuration=(7+Math.random()*11)+'s';
+    h.style.animationDelay=(Math.random()*8)+'s';
+    h.style.fontSize=(12+Math.random()*18)+'px';
+    h.style.textShadow = '0 0 8px rgba(255, 182, 193, 0.6)';
     hb.appendChild(h);
   }
 }
@@ -2461,7 +2663,183 @@ window.addEventListener('load', function(){
   
   // Initialize dynamic photo gallery from local storage
   initPhotoGallery();
+  
+  // Initialize wish wall and front-screen wishes
+  renderWishes();
+  
+  // Cursor Glitter & Heart Trail
+  document.addEventListener('mousemove', function(e) {
+    if (Math.random() > 0.2) return; // Throttle to prevent lagging
+    
+    const sparkle = document.createElement('div');
+    sparkle.className = 'cursor-heart';
+    
+    const elements = ['✨', '💖', '⭐', '🌸', '💫', '🌟', '💕'];
+    sparkle.textContent = elements[Math.floor(Math.random() * elements.length)];
+    
+    sparkle.style.left = e.clientX + 'px';
+    sparkle.style.top = e.clientY + 'px';
+    
+    const tx = (Math.random() - 0.5) * 80;
+    const ty = (Math.random() - 0.5) * 80 - 50;
+    sparkle.style.setProperty('--tx', tx + 'px');
+    sparkle.style.setProperty('--ty', ty + 'px');
+    
+    sparkle.style.fontSize = (10 + Math.random() * 12) + 'px';
+    sparkle.style.textShadow = '0 0 8px rgba(255,255,255,0.8), 0 0 15px rgba(232,100,138,0.6)';
+    
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  });
 });
+
+// ==========================================
+// WISH WALL & FRONT PAGE WISHES LOGIC
+// ==========================================
+let selectedSticker = '🎂';
+
+function selectSticker(element, sticker) {
+  document.querySelectorAll('.sticker-opt').forEach(opt => opt.classList.remove('active'));
+  element.classList.add('active');
+  selectedSticker = sticker;
+}
+
+function submitWish() {
+  const wishTextEl = document.getElementById('wish-text');
+  const wishText = wishTextEl ? wishTextEl.value.trim() : '';
+  if (!wishText) {
+    alert("Please write a wish first! 💖");
+    return;
+  }
+  
+  const newWish = {
+    id: Date.now(),
+    text: wishText,
+    sticker: selectedSticker,
+    date: new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+  };
+  
+  let wishes = JSON.parse(localStorage.getItem('bday_wishes') || '[]');
+  wishes.push(newWish);
+  localStorage.setItem('bday_wishes', JSON.stringify(wishes));
+  
+  if (wishTextEl) wishTextEl.value = '';
+  
+  renderWishes();
+  launchConfetti();
+}
+
+function deleteWish(id) {
+  if (confirm("Are you sure you want to delete this wish? 🥺")) {
+    let wishes = JSON.parse(localStorage.getItem('bday_wishes') || '[]');
+    wishes = wishes.filter(w => w.id !== id);
+    localStorage.setItem('bday_wishes', JSON.stringify(wishes));
+    renderWishes();
+  }
+}
+
+function renderWishes() {
+  const wishes = JSON.parse(localStorage.getItem('bday_wishes') || '[]');
+  const wishBoard = document.getElementById('wish-board');
+  const frontWishBoard = document.getElementById('front-wish-board');
+  const frontWishesSection = document.getElementById('front-wishes-section');
+  const toggleBtn = document.getElementById('toggle-front-wishes-btn');
+  
+  if (wishBoard) wishBoard.innerHTML = '';
+  if (frontWishBoard) frontWishBoard.innerHTML = '';
+  
+  if (wishes.length === 0) {
+    if (wishBoard) {
+      wishBoard.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding: 3rem; font-family: 'Dancing Script', cursive; font-size: 1.8rem;">
+          No wishes pinned yet. Be the first to write a sweet note! 🌸
+        </div>
+      `;
+    }
+    if (frontWishesSection) frontWishesSection.style.display = 'none';
+    if (toggleBtn) toggleBtn.style.display = 'none';
+    return;
+  }
+  
+  wishes.forEach(wish => {
+    // Escaping helper
+    const cleanText = escapeHTML(wish.text);
+    const noteHtml = `
+      <div class="wish-note-text">${cleanText}</div>
+      <div class="wish-note-footer">
+        <span>${wish.sticker}</span>
+        <span style="font-size: 0.8rem; color: var(--muted);">${wish.date}</span>
+        <button class="wish-delete-btn" onclick="deleteWish(${wish.id})" title="Delete Wish">🗑️</button>
+      </div>
+    `;
+    
+    if (wishBoard) {
+      const note = document.createElement('div');
+      note.className = 'wish-note';
+      note.innerHTML = noteHtml;
+      wishBoard.appendChild(note);
+    }
+    
+    if (frontWishBoard) {
+      const note = document.createElement('div');
+      note.className = 'wish-note';
+      note.innerHTML = noteHtml;
+      frontWishBoard.appendChild(note);
+    }
+  });
+  
+  const isHidden = localStorage.getItem('hide_wishes_on_front') === 'true';
+  if (frontWishesSection) {
+    frontWishesSection.style.display = isHidden ? 'none' : 'block';
+  }
+  
+  if (toggleBtn) {
+    toggleBtn.style.display = 'block';
+    toggleBtn.textContent = isHidden ? 'Show Pinned Wishes 📌' : 'Hide Wishes Section 🙈';
+  }
+}
+
+function toggleFrontWishes() {
+  const isHidden = localStorage.getItem('hide_wishes_on_front') === 'true';
+  localStorage.setItem('hide_wishes_on_front', isHidden ? 'false' : 'true');
+  renderWishes();
+}
+
+function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, 
+    tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag)
+  );
+}
+
+function startGlitterShower() {
+  const cp = document.getElementById('cake-page');
+  if (!cp) return;
+  const elements = ['✨', '⭐', '💫', '🌟', '💖', '🌸', '🎀'];
+  // Spawn 60 glittering stars over 8 seconds
+  const interval = setInterval(() => {
+    if (!cp.classList.contains('active')) {
+      clearInterval(interval);
+      return;
+    }
+    const star = document.createElement('div');
+    star.className = 'petal';
+    star.textContent = elements[Math.floor(Math.random() * elements.length)];
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.animationDuration = (3 + Math.random() * 4) + 's';
+    star.style.fontSize = (12 + Math.random() * 20) + 'px';
+    star.style.textShadow = '0 0 12px rgba(255,223,0,0.9), 0 0 24px rgba(255,105,180,0.9)';
+    cp.appendChild(star);
+    setTimeout(() => star.remove(), 7000);
+  }, 120);
+  
+  setTimeout(() => clearInterval(interval), 10000);
+}
 </script>
 </body>
 </html>
